@@ -1,0 +1,20 @@
+Setting up the repo for the first time.
+
+1. On your linux box, set up global user name and e-mail.
+    git config --global user.name "ABC"
+
+    git config --global user.email "ABC"
+    Replace ABC with your name.
+
+2. Create a new repo at github. And copy the repo URL.
+   https://github.com/rajeshamdev/dsa.git
+
+3. Run below commands (as described at github after create a repo).
+
+    echo "# dsa" >> README.md
+    git init
+    git add README.md 
+    git commit -m "Create dsa.git repo"
+    git remote add origin https://github.com/rajeshamdev/dsa.git
+    git push -u origin master
+
