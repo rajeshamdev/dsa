@@ -1,5 +1,6 @@
 #include <iostream>
 
+/* Selection sort inplace Best/Worst/Avg case O(n2) algorithm */ 
 using namespace std;
 void selectionSort(int A[], int size)
 {
