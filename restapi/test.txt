@@ -1,0 +1,33 @@
+POC code is in 'feature/vpfsd_rep' branch in 'interface/vpfs/restapi/'.
+1. Flask setup on Atlas machines: Be 'root' user and run below commands.
+   1.1) pip install virtualenv
+   1.2) virtualenv venv
+   1.3) . venv/bin/activate (counter deactivate).
+   1.4) pip install Flask.
+   1.5) pip install uwsgi
+ 
+2. start uwsgi webserver with 4 processes:
+   2.1) copy interface/vpfs/restapi/repRestApi.py to the test machine.
+   2.2) start web server: uwsgi --http 127.0.0.1:3031 --wsgi-file ./vpfsapp.py --callable vpfsapp --processes 4 --threads 2 --stats 127.0.0.1:9191 -H /root/restapi/venv/
+ 
+3. Testing:
+   My source host : 10.67.140.211, target host : 10.67.137.67
+   Replace these with your machines.
+   3.1) create source share:
+    curl -H "Content-Type: application/json" -X POST -d '{"opType":"createAndExport", "imageId":"repsource", "clientHost":"10.67.140.211"}' http://127.0.0.1:3031/config
+ 
+   3.2) create few files with genfiles:
+    /root/genfiles/genfiles_linux -n 3 -l 10m -h 10m -i 128k -e repsource -d /mnt/vpfs/reps/repsource
+ 
+   3.3) Create snapshot and export it:
+    curl -H "Content-Type: application/json" -X POST -d '{"opType":"snapshotAndExport", "sourceImageId":"repsource", "destinationImageId":"snapshot1", "clientHost":"10.67.140.211"}' http://127.0.0.1:3031/config
+ 
+   3.4) unmount the snapshort share (requirement for replication for now):
+    curl -H "Content-Type: application/json" -X POST -d '{"opType":"umount", "mountPoint":"/mnt/vpfs/snap/snapshot1"}' http://127.0.0.1:3031/config
+ 
+   3.5) Start replication job:
+    curl -H "Content-Type: application/json" -X POST -d '{"opType":"startRepJob", "sourceImageId":"snapshot1", "targetImageId":"reptarget1", "targetHost":"10.67.137.67", "mountPoint":"/mnt/vpfs/snap/snapshot1"}' http://127.0.0.1:3031/vpfsrep
+ 
+   3.6) (optional) delete source share and snapshot share:
+    curl -H "Content-Type: application/json" -X POST -d '{"opType":"unexportAndDelete", "mountPoint":"/mnt/vpfs/snap/snapshot1", "clientHost":"10.67.140.211"}' http://127.0.0.1:3031/config
+    curl -H "Content-Type: application/json" -X POST -d '{"opType":"unexportAndDelete", "mountPoint":"/mnt/vpfs/reps/repsource", "clientHost":"10.67.140.211"}' http://127.0.0.1:3031/config
