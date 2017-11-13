@@ -1,0 +1,42 @@
+1) Graph consists of "Nodes" and "Edge" (or links).
+2) Path leads from one node to another via edges.
+3) Length: The length of a path is number of edges in it.
+4) Cycle: A path is cycle if first and last node is same.
+5) Simple Path: A path is simple of each node appears at most onces in the path.
+6) Connectivity: A graph is connected if there is a path between any two nodes.
+7) Connectivity components: Connected parts of the graph are called "connected components".
+8) Tree: a tree is connected graph with N nodes and (N-1) edges. There is a unique path
+   between any two nodes of the tree.
+9) Directed graph: a graph is directed if edges can be traversed in one direction only.
+10) Weighted graph: Each edge is graph can be assigned weigth (often called edge length).
+    Path length in weighted graph is sum of all the edge weights in the path.
+11) Shortest Path: Shortest path between two nodes is the path with shortest length.
+12) Neighbours: Two nodes are neighbours if they is an edge between them.
+13) Degree: Degree of a node is number of its neighbours.
+14) The sum of degrees in a graph is always 2m (m is edges). This is so because each edge
+    increases the degree of exactly two nodes by one.
+15) Regular graph: A graph is regular if the degree of every node is a constant d.
+16) Complete graph: A graph is complete if the degree of every node is n-1, i.e., the graph
+    contains all possible edges between the nodes.
+17) Graph colouring: Each node is assigned a color so that no adjacent nodes
+    have the same color. A graph is bipartite if it is possible to color it using
+    two colors. It turns out that a graph is bipartite exactly when it does not contain
+    a cycle with an odd number of edges.
+18) Simple graph: A graph is simple if no edge starts and ends at the same node, and there
+    are no multiple edges between two nodes.
+
+
+
+
+Directed Graphs:
+---------------
+1) In a directed graph each edge has start and end node.
+2) A "cycle" in a graph is sequence of edges v1, v2.....vn-1, vn, v1 such that
+   (v1, v2), (v2, v3), (vn-1, vn) and (vn, v1) are edges.
+3) If G congrains a cycle, it cannot be linearly ordered.
+4) A directed graph G is a Direct Asyclic Graph (DAG) if it has no cycles.
+5) Source: A source in a directed graph is a node with no incoming edges
+   (i.e it has only outgoing edges).
+6) Sink: A sink in a directed graph is a node with no outgoing edges
+   (i.e it has only incoming edges).
+
