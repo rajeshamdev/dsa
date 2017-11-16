@@ -3,6 +3,14 @@
 
 using namespace std;
 
+string strReverse0(string str)
+{
+    string revStr;
+    for (auto iter = str.rbegin(); iter != str.rend(); iter++)
+        revStr += *iter;
+    return revStr;
+}
+
 /* Walks through entire string. Slightly inefficient */
 string strReverse1(string str)
 {
@@ -30,8 +38,13 @@ int main(void)
 {
     string name = "Veritas interview";
     string name1 = strReverse1(name);
-    cout << "name = " + name1 + "\n";
+    cout << "Reverse string: " + name1 + "\n";
 
     strReverse2(name1);
-    cout << "name = " + name1 + "\n";
+    cout << "Reverse of reverse : " + name1 + "\n";
+
+    name1 = strReverse0(name);
+    cout << "Reverse string: " + name1 + "\n";
+    name1 = strReverse0(name1);
+    cout << "Reverse of reverse: " + name1 + "\n";
 }
