@@ -6,6 +6,20 @@ typedef struct node {
     node *next;
 } Node;
 
+
+Node* reverseList(Node *head)
+{
+    Node *new_head = nullptr;
+
+    while (head) {
+        Node *tmp = head;
+        head = head->next;
+        tmp->next = new_head;
+        new_head = temp;
+    }
+    return new_head;
+}
+
 Node* mergeLists(Node* a, Node* b) 
 {
     Node* result = NULL;
@@ -35,14 +49,6 @@ void addItem(Node **head, int item)
         tmpnode->next = *head;
         *head = tmpnode;
     }
-}
-
-void MoveData(Node **src, Node **dest)
-{
-    Node *tmpnode = *src;
-    *src = (*src)->next;
-    tmpnode->next = *dest;
-    *dest = tmpnode;
 }
 
 void printList(Node* mergeList)
