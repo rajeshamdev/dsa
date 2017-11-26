@@ -7,19 +7,6 @@ typedef struct node {
 } Node;
 
 
-Node* reverseList(Node *head)
-{
-    Node *new_head = nullptr;
-
-    while (head) {
-        Node *tmp = head;
-        head = head->next;
-        tmp->next = new_head;
-        new_head = tmp;
-    }
-    return new_head;
-}
-
 Node* mergeLists(Node* a, Node* b) 
 {
     Node* result = NULL;
