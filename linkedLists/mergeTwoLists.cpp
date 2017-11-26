@@ -15,7 +15,7 @@ Node* reverseList(Node *head)
         Node *tmp = head;
         head = head->next;
         tmp->next = new_head;
-        new_head = temp;
+        new_head = tmp;
     }
     return new_head;
 }
@@ -39,16 +39,12 @@ Node* mergeLists(Node* a, Node* b)
     return(result);
 }
 
-void addItem(Node **head, int item)
+void addItem(Node *&head, int item)
 {
     Node *tmpnode = new Node;
     tmpnode->data = item;
-    tmpnode->next = nullptr;
-    if (!(*head)) *head = tmpnode;
-    else {
-        tmpnode->next = *head;
-        *head = tmpnode;
-    }
+    tmpnode->next = head;
+    head = tmpnode;
 }
 
 void printList(Node* mergeList)
@@ -64,15 +60,15 @@ void printList(Node* mergeList)
 int main(void)
 {
     Node *L1 = nullptr;
-    addItem(&L1, 4);
-    addItem(&L1, 3);
-    addItem(&L1, 2);
-    addItem(&L1, 1);
+    addItem(L1, 4);
+    addItem(L1, 3);
+    addItem(L1, 2);
+    addItem(L1, 1);
     cout << "L1 : "; printList(L1);
     Node *L2 = nullptr;
-    addItem(&L2, 6);
-    addItem(&L2, 5);
-    addItem(&L2, 3);
+    addItem(L2, 6);
+    addItem(L2, 5);
+    addItem(L2, 3);
     cout << "L2 : "; printList(L2);
     Node* mergeList = mergeLists(L1, L2);
     cout << "Merged List: "; printList(mergeList);
