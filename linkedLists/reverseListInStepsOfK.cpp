@@ -7,46 +7,48 @@ struct Node {
     Node *next;
 };
 
-Node* reverseKNodes(Node **head, int k, Node **last)
+/**
+ * This is simple reverse of linked list.  It takes reference
+ * of list head pointer and return a reverse list of size <= k.
+ * It cuts off the reversed list from the head pointer.
+ */
+Node* reverseKNodes(Node *&head, int k)
 {
     Node *new_head = nullptr;
-    int count = 0;
-
-    if (*head) {
-        *last = *head;
-    } else {
-        *last = nullptr;
-    }
-
-    while (*head && k--) {
-        Node *tmp = *head;
-        *head = (*head)->next;
+    while (head && k--) {
+        Node *tmp = head;
+        head = head->next; // moves forward the head.
         tmp->next = new_head;
         new_head = tmp;
     }
-    if (*last)
-        (*last)->next = nullptr;
-    return new_head;
+    return new_head; // reversed list head.
 }
 
-Node* reverseList(Node **head, int k)
+/**
+ * This is bit tricky (and confusing).
+ * The core idea is: we need to save the head pointer before
+ * reversing K elements of the list. And link its 'next' pointer
+ * with the reversed list head.
+ * 
+ */
+Node* reverseList(Node *&head, int k)
 {
-    Node *last = nullptr;
-    Node *rhead = reverseKNodes(head, k, &last);
-    Node *tmp = last;;
-    while (*head) {
-        tmp->next = reverseKNodes(head, k, &last);
-        tmp = last;
+    Node *prevHead = head;
+    Node *rhead = reverseKNodes(head, k); // store the head of whole list.
+    while (head) {
+        Node *tmp = head;
+        prevHead->next = reverseKNodes(head, k);
+        prevHead = tmp;
     }
     return rhead;
 }
 
-void push(Node **head, int data)
+void push(Node *&head, int data)
 {
     Node *tmp = new Node;
     tmp->data = data;
-    tmp->next = *head;
-    *head = tmp;
+    tmp->next = head;
+    head = tmp;
 }
 
 void printList(Node *head)
@@ -63,10 +65,10 @@ int main(void)
     Node *head = nullptr;
     int i = 10;
     while (i) {
-        push(&head, i);
+        push(head, i);
         --i;
     }
     printList(head);
-    Node *rhead = reverseList(&head, 3);
+    Node *rhead = reverseList(head, 4);
     printList(rhead);
 }
