@@ -5,5 +5,9 @@
 4) How do you debug memory leaks on customer box?
 5) Explain why pthread_join() used?
 6) How do you pass variable number of args to thread func in pthread_create?
+7) what is std::move()?
+8) implement spinlock.
+9) implement c++ dynamic polymorphism.
+
 
 
