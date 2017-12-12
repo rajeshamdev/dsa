@@ -1,0 +1,21 @@
+AWS storage and content delivery:
+--------------------------------
+
+1) S3:
+   - objecct storage.
+   - logically groups related files into buckets.
+   - stores files/images/audio/video.
+   - does not support databases.
+   - scalable and durable storage service.
+   - no pre-provisiong fpr space needed.
+2) EBS: just like a raw disk. Multiple EC2 instances cannot use
+   simultaneously.
+3) Glacier: Backup/archival scenarios. Write many times. Read less.
+4) Elastic file system: Auto scales up/down as per load. Multiple EC2
+   instances can share.
+5) AWS CloudFront: content delivery network. S3 is the underlying
+   storage for CloudFront.
+
+The default storage with EC2 instances is not persistent (and volatile).
+Also the storage cannot be scaled up/down.
+

@@ -1,0 +1,61 @@
+
+typedef struct rwlock {
+    int nActive; // num of active readers. -1 is writer.
+    int pendingReads;
+    int pendingWrites;
+    spinlock_t sl;
+    condvar canRead;
+    condvar canWrite;
+} rwlock_t;
+
+
+// shared lock
+rdlock(rwlock_t *r)
+{
+    spin_lock(&r->sl);
+    r->pendingReads++;
+    if (r->pendingWrites > 0) {
+        cond_wait(r->canRead, r->sl);
+    }
+    // there should not be any active writers;
+    while (r->nActive < 0)
+        cond_wait(r->canRead, r->sl);
+    r->nActive++;
+    r->pendingReads--;
+    spin_unlock(r->sl);
+}
+
+rdunlock(rwlock_t *r)
+{
+    spin_lock(r->sl);
+    r->nActive--;
+    if (r->nActive == 0) {
+        spin_unlock(r->sl);
+        cond_notify_one(r->canWrite);
+   } else spin_unlock(r->sl);
+}
+
+//exclusive lock
+rwlock(rwlock_t *w)
+{
+    spin_lock(w->lock);
+    w->pendingWrites++;
+    while (r->nActive)
+        cond_wait(canWrite, w->lock);
+    r->pendingWrites--;
+    r->nActive = -1;
+    spin_unlock(w->lock);
+}
+
+
+rwunlock(rwlock_t *w)
+{
+    spin_lock(w->lock);
+    w->nActivei = 0;
+    wakeReaders = (w->pendingReads !=0);
+    spin_unlock(w->lock);
+    if (pendingRead)
+        cond_signal_all(r->condRead);
+    else
+        cond_notify_one(r->canWrite); 
+}

@@ -1,0 +1,8 @@
+
+                 Signals
+                 -------
+Signals are expensive for IPC - the sender must make a system call, the kernel must
+interrupt the receiver and extensively manipulate its stack so as to invoke its handler
+and later resume the interrupted code. Also they have limited bandwidth (31 signals)
+and it is not possible to send additional info or arguments.
+

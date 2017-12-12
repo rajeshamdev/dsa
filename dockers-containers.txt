@@ -1,0 +1,22 @@
+
+Images: Is a class.
+
+Containers:
+ - Instance of class.
+ - Run time object.
+ - Environment to run apps.
+ - created from image.
+ - containes all the binaries and deps needed to run app.
+
+Registry:
+
+Repos:
+
+
+Dockers:
+ 1. To spin up a container:
+    rajesham@rgajjela:~/ws/dsa$ docker run busybox:1.24 ls /
+ 2. To run in interactibve and command line mode:
+    rajesham@rgajjela:~/ws/dsa$ docker run -it busybox:1.24
+
+

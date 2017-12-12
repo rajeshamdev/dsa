@@ -1,0 +1,9 @@
+
+1) What is the difference between mutex and semaphore?
+2) When do you use vector, list, set ?
+3) When do you use map and unordered_map ?
+4) How do you debug memory leaks on customer box?
+5) Explain why pthread_join() used?
+6) How do you pass variable number of args to thread func in pthread_create?
+
+

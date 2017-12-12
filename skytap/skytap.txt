@@ -1,0 +1,154 @@
+Please answer the following five questions. This exercise should take under an hour.
+
+
+
+QUESTION #0: Agreement not to use external help
+
+As you complete the test, do not use a search engine, open a REPL, write code
+in your own IDE/editor, or otherwise use any tools other than CoderPad.
+
+Do you agree to this? Type your initials below.
+
+---
+
+ANSWER #0:
+
+Initials:
+<RG>
+
+
+================================================================================
+
+
+QUESTION #1: Array with odd numbers
+
+In the language of your choice, implement a function named
+`get_odd_numbers`, which takes as input an array of integers and returns a
+new array of only the odd numbers, where the order of the elements is
+otherwise unchanged.
+
+For instance, `get_odd_numbers([1,2,3,4,5,6,7])` should return `[1,3,5,7]`.
+
+
+---
+
+ANSWER #1:
+
+Language:
+<fill this in>
+
+Implementation:
+<fill this in>
+
+
+================================================================================
+
+
+QUESTION #2: Binary tree
+
+Let's say we have a class called Node, which represents a node in a binary
+tree. Instances of Node have two instance variables: `left` and `right`.
+They represent the node's children, and each may refer either to another
+instance of Node or be null.
+
+In the language of your choice, implement a method on the Node class named
+`count_descendants`, which will return the total number of nodes in the
+subtree of the node it's called on.
+
+For instance, if we have this binary tree,
+
+             n1
+            /  \
+          n2    n3
+         /     /  \
+       n4    n5    n6
+      /     /
+    n7    n8
+
+then calling `n3.count_descendants()` should return 3. Calling
+`n7.count_descendants()` should return 0.
+
+---
+
+ANSWER #2:
+
+Language:
+<fill this in>
+
+Implementation:
+<fill this in>
+
+
+================================================================================
+
+
+QUESTION #3: Relational databases & SQL
+
+Assume there are two database tables, `dinglebop` and `fleeb`.  `dinglebop` has
+a single primary key column `dinglebop_id`, and `fleeb` has a single primary
+key column `fleeb_id`.
+There's also an associative table `grumbo (dinglebop_id, fleeb_id)` which references `dinglebop` and `fleeb` with foreign keys.
+
+
+1. `grumbo` establishes a many-to-many relationship between `dinglebop` and `fleeb`. 
+What needs to happen to ensure that  `dinglebop` can be associated to same `fleeb` only once?
+
+
+2. Write an SQL query displaying counts of each `fleeb` grouped by the
+associated `dinglebop`. Include the `dinglebop` records that have no `fleeb`,
+example output:
+
+  +--------------+-------------+
+  | dinglebop_id | fleeb_count |
+  +--------------+-------------+
+  |            1 |           3 |
+  |            2 |           1 |
+  |            3 |           0 | # 0 or NULL
+  +--------------+-------------+
+
+
+
+3. Write an SQL query to find all `fleeb` that are not associated with any `dinglebop`
+
+---
+
+ANSWER #3:
+
+<fill this in>
+
+
+================================================================================
+
+
+QUESTION #4: Threading.
+
+Implement a thread-safe Queue class with the methods put(x), get().
+
+Make get() method block if there's nothing in the queue.
+
+Use example (Python code)
+
+  q = Queue()
+  q.put(10)
+  q.put(20)
+  
+  q.get() # returns 10
+  q.get() # returns 20
+  q.get() # blocks until another thread put()s an element
+  
+
+---
+
+ANSWER #4:
+
+Language:
+<fill this in>
+
+Implementation:
+<fill this in>
+
+
+---------
+
+
+Thank you for participating!

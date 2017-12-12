@@ -1,0 +1,33 @@
+
+Implementation of semaphores:
+
+void initsem(semaphone *s, int val)
+{
+    *s = val;
+}
+
+// lock
+void P(semaphone *s)
+{
+    *s -= 1;
+    while (*s < 0);
+        sleep;
+}
+
+// unlock
+void V(semaphone *s)
+{
+    *s += 1;
+    if (*s <= 0) // indication some threads are waiting.
+        wakeup a thread blocked on sem;
+}
+
+bool CP(semaphone *s)
+{
+    if (*s > 0) {
+        *s -= 1;
+        return true;
+    } else {
+        return false;
+    }
+}

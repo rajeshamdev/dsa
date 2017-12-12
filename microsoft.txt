@@ -1,0 +1,89 @@
+// Given a number, give back a string version of it.
+// So 1234 will give One thousand two hundred and thirty four
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+	std::cout << "Hello world - C++ !" << endl;
+
+    inittab()
+	return 0;
+}
+
+unordered_map<int, string> pMap;
+unordered_map<int, string> nMap
+void inittab(void)
+{
+    pMap[0] = '';
+    pMap[1] = 'One';
+    pMap[10] = "Ten";
+    pMap[100] = "Hundred";
+    pMap[1000] = "Thousand";
+    pMap[10000] = "Ten Thousand";
+    pMap[100000] = "Lakh";
+    pMap[oneCore] = "Crore"; /// Explained;
+    nMap[1] = "One";
+
+}
+
+// 1034
+// 001
+// 1000
+// 101010101010101010
+
+// func(9, 1000) - thousand nine ---> nine thousand;
+// Nine Ten -> Ninety;
+// Two Ten -> Twenty;
+
+
+string func(const int &digit, const long long &pv)
+{
+    
+    string fstr = nMap[digit] + pMap[pv];
+    return fstr; 
+}
+
+/*
+single digits : Handled;
+two digits: 
+  --> 11, 12, 13: Special case and needs to be handled.
+  --> 20, 21, 23 : Done (handled);
+Three digits:
+   -> 100, 101, 110; Done
+   -> 999 : Done
+Four digits:
+   -> 1000 : Done;
+
+Hundred crores:
+
+One Hunder Ninty Nine;
+2000        
+*/
+
+10000
+std::string to_string(long number)
+{
+    vector<string> toString;
+    long pv = 1;
+    while(number) {
+        int digit = number%10;
+        if (digit) {
+            string str  = func(digit, pv);
+            toString.push_back(str);
+        }
+        pv *= 10; 
+        number /= 10;
+    }
+    
+    auto iter = toString.rbegin();
+    for (; iter != toString.rend(); ++iter) {
+        cout << *iter << " ";
+    }
+    cout << "\n";
+}

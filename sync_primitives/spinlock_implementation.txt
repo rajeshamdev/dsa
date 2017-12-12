@@ -1,0 +1,22 @@
+Thread trying to acquire the lock will busy wait until the resource is
+unlocked. It is usually scalar variable with zero if available and one if
+unavailable.
+
+spinlock_t *s;
+spin_init(spinlock_t *s)
+{
+    *s = 0;
+}
+
+void spin_lock(spinlock_t *s)
+{
+    while (test_and_set(s) != 0)
+        while (*s != 0); // busy wait
+}
+
+void spin_unlock(spinlock_t *s)
+{
+    *s = 0;
+}
+
+

@@ -1,0 +1,14 @@
+1) A and B are huge matrices that cannot fit in memory and in local storage.
+   What is the fastest way to find (A+B)/2 * (Random Weight) for millions
+   of times. You need to store result C also.
+   How would you do this such that computation to be fast?
+
+2) Find middle element of linked list.
+
+3) Find highest bit set in a number.
+
+4) Explain the workflow of fuse file system for open() system call.
+
+5) What are the other KV data bases similar to LMDB?
+
+6) Did you benchmark any other KV databases similar to LMDB?

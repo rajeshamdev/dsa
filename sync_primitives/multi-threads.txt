@@ -1,0 +1,107 @@
+
+Q1: Why multi-threads at all ?
+Ans:
+    1. Improves application responsiveness.
+    2. Uses multiprocessors more efficiently.
+    3. creating thread is light weight (as it shares
+       address space of the process).
+    4. Switching thread is cheap.
+    5. synchronizing threads is easy.
+
+------------------------------------------------------------------------------------------
+
+Q2: Describe some of the threads terminology?
+Ans:
+   mutex locks          : functions that lock and unlock to shared data.
+   condition variables  : fucntions that block threads until a change of state.
+   counting semaphores  : a memory based synchronization mechanism.
+   parallelism          : two or more threads executing simultaneously.
+   concurrency          : two or more threads making progress.  
+
+------------------------------------------------------------------------------------------
+
+Q3: What is in threads private data?
+Ans:
+   1. thread id.
+   2. register state including PC and stack pointer.
+   3. stack.
+   4. signal mask.
+   5. priority.
+   6. thread private storage.
+
+------------------------------------------------------------------------------------------
+
+Q4: What are available synchronization primitives and describe them?
+Ans: There are four sync primitives:
+   1. mutex locks: serializes threads to access access shared resource to avoid race
+                   conditions.
+   2. reader/write locks:
+       -> Allows concurrent reads and exclusive writes to shared region.
+       -> To modify the resource, thread must acquire exclusive writer lock.
+       -> An exclusive writer lock is not granted until all the read locks
+          released.
+       -> reader lock not granted until write lock released.
+   3. condition variable: variables that block threads until a condition is true.
+   4. counting semaphores:
+       -> coordinate access to resource. 
+       -> count is the limit how many threads can have access to semaphore.
+       -> when count is reached, the semaphore blocks.
+
+------------------------------------------------------------------------------------------
+
+Q5: Why ptthread_join() and detached state useful?
+Ans: 
+    - If thread is created with default attributes (nondetached), the
+      pthread_join must be called. If not, if the thread exits, its
+      resources (tid, stack)  are not reclaimable by parent process,
+      resulting in resource leak or memory leak.
+    - When thread is created with attributes set to PTHREAD_CREATE_DETACHED,
+      its thread id and other resources can be reclaimed ASA the thread terminates.
+      This prevents memory leaks.
+
+------------------------------------------------------------------------------------------
+
+                   Mutex
+                   -----
+
+One of the mutex attribute:
+1) PTHREAD_PROCESS_PRIVATE : muxex scope is localized to current process.
+2) PTHREAD_PROCESS_SHARED  : motex can be shared across processes. If this is kept in shared
+   memory, then this can be used as IPC.
+3) PTHREAD_MUTEX_NORMAL: does not detect deadlocks. Thread trying to relock without
+   unlocking it will result in deadlock.
+4) PTHREAD_MUTEX_ERRORCHECK: By this, relocking without unlocking results in error,
+   thus this avoids deadlock.
+5) PTHREAD_MUTEX_RECURSIVE: allows recurives locking of the mutex.
+
+Q6: How to avoid deadlocks with mutex ?
+Ans:
+    1) By setting mutex attribute to PTHREAD_MUTEX_ERRORCHECK.
+    2) By calling mutex try lock (if applicable).
+    3) By maintaning lock hierarchy.
+
+------------------------------------------------------------------------------------------
+
+
+                   Condition variables
+                   --------------------
+
+Use condition variables to atomically block threads until a particular condition
+is true. Always use condition variables together with mutex lock - this is because
+the condition is tested under the lock.
+
+------------------------------------------------------------------------------------------
+
+
+                  Comparing Primitives
+                  --------------------
+
+The most basic primitive is mutex. It is most efficient in terms of memory and execution.
+This should be generally best choice to serialize access to shared resource.
+
+The next efficient primitive is cond var.
+
+The semaphore uses more memory than condition variable. Semaphores do not have owner.
+Any thread can increment semaphore that has blocked.
+
+read-write lock permits concurrent reads and exclusive writes to proteced resource.
