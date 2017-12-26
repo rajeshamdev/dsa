@@ -1,0 +1,131 @@
+
+
+1) binary tree deserilaxationa and serialization.
+2) Leet code.
+
+Implement minstack so as push(), pop() and minstack() are O(1).
+
+#include <bits/stdc++.h>
+
+class Stack {
+    private:
+       int size;
+       int top;
+       int runlen;
+       int *A;
+       int minval;
+       list<int> minList; //priority_queue<int, vector<int>, greather<int>> pq;
+     
+    public:
+        Stack(int len)
+        {
+            size = len;
+            top = -1;
+            runlen = 0;
+            A = new int[len];
+            minval = -1;
+        }
+        void push(const int &);
+        int pop(void);
+        int min(void);
+};
+
+void Stack::push(const int &val)
+{
+    if (top > size) return;
+    top++;
+    A[top] = val;
+    if (val < minval)
+        minval = val;
+    pq.push(val);
+}
+
+int Stack::pop(void)
+{
+    if (top == -1) return -1;
+    int a = A[top];
+    --top;
+    if (a == pq.front()) {
+         pq.pop();
+         minval = pq.front();
+    };
+    return a;
+}
+
+1 2 3 4 5
+
+
+
+Q: Given a dictionary that contains mapping of employee and his manager as a number of (employee, manager) pairs like below. 
+{ "A", "C" },
+{ "B", "C" },
+{ "C", "F" },
+{ "D", "E" },
+{ "E", "F" },
+{ "F", "F" } 
+
+In this example C is manager of A, 
+C is also manager of B, F is manager 
+of C and so on.
+Write a function to get names of all employees under each manager in the hierarchy not just their direct reports. It may be assumed that an employee directly reports to only one manager. In the above dictionary the root node/ceo is listed as reporting to himself. 
+Output should be a Dictionary that contains following. 
+A - [] 
+B - []
+C - [A, B]
+D - []
+E - [D]
+F - [A, B, C, D, E]
+For the first iteration of the solution, let’s assume the order in which the reportees are printed doesn’t matter
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+unordered_map<string, unordered_set<string>> empMap;
+
+void createEmpMap(const string &emp, const string &man)
+{
+     if (emp.empty() || man.empty()  return;
+     
+     auto iter = empMap.find(man);
+     if (iter == empMap.end() {
+         unorder_set<string> tmpSet;
+         tmpSet.insert(emp);
+         empMap.insert({man, tmpSet}); 
+     }
+     unordered_set<string> empSet = empMap[man];
+     if (empSet.find(emp) == empSet.end() {
+         empMap[man].insert(emp);
+     }
+     return;
+}
+
+vector<string> getReportees(const string &man)
+{
+    vector<string> emp;
+    unordered_set<string>::iterator tmp = empMap.find(man);
+    if (tmp != empMap.end() {
+         for (string &name : empMap[man]) {
+             emp.push_back(name);
+         }
+    }
+    return emp;
+}
+
+void printOrgChar(void)
+{
+    for (auto &iter : empMap) {
+    
+        for (string &emp : empMap[iter->first]) {
+            if (empMap.find(emp) != empMap.find()
+            cout << "emp, " ;
+            
+        }
+        iter->first; // manager;
+        iter->second; //list of employees.
+        
+    }
+
+}
+

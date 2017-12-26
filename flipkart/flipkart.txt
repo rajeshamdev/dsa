@@ -1,0 +1,75 @@
+Implement a flat filesystem in a file, e.g. "/tmp/myfs", 1GB,
+
+Example layout could be:
+-------------------------------
+|          Metadata           |
+|                             |
+-------------------------------
+|                             |
+|                             |
+|                             |
+|            Data blocks      |
+|                             |
+|                             |
+|                             |
+-------------------------------
+Use command to see the fs: "od -c <filesystem>"
+
+API's:
+    <RET> mfscreate()
+    <fd> mcreate()
+    <fd> mopen()
+    <RET> mwrite()
+    <RET> mseek()
+    <RET> mclose()
+    Thread safety
+
+Constraints:
+- Flat filesystem, no directories
+- No delete operation
+- No requirement to re-read the filesystem from disk to memory
+    (one time create only)
+- No block allocation till required
+- Block allocation for parallel operations can be interspersed.
+- Thread safety
+- Good test cases
+- Use standard LIBC api's only.
+
+Example code:
+
+main()
+     mfscreate()
+     pthread_create(t1)
+     pthread_create(t2)
+
+t1()
+     op1, op2, op3, op1, op2, op4, op3, op5, ....... <etc>
+t2()
+     op4, op2, op1, op2, op5, op3, op1, op2, op4, op3, op5, ....... <etc>
+
+
+
+The code is in the threads t1(), t2(), etc. They call the api's to create/write
+seek, close, open, etc.  The structure of main() fn I have given there
+main simply creates a filesystem and starts 2 threads, t1 and t2 which call the api's
+you can use simple test cases yourself no paths are reqd as it is a flat fs.  so:
+  fd = mcreate("f1");
+  fd2 = mcreate("f2");
+  fd3=mcreate("f1")
+  etc.
+third shd fail, simple but covers a lot of the normal tests then you can mclose()
+mopen same file or non-existent file write to it there is no READ api, so all opens
+are writes only. No flag required in mopen/mcreate.
+
+Q: The signatures of mcreate/mwrite/mopen etc are exactly same as create()/write()/open() ?
+Ans: yes without the "flag", args as all ops are write only
+
+Q: And the new fs should support parallel operations, I think, YES?
+Ans: correct.  may not be in initial version right now if time is a constraint
+first get the apis working then add the threading if there is time
+
+Q: Do we need to honor mode bits? I like to ignore for now. Is that OK?
+Ans: no mode.  just simple filesystem nothing complicated
+
+Q: Do we really write to file in this file system ☺ ?
+Ans: yes.  A psuedo fs inside a file so od on the filesystem shows the data/metadata, etc.
