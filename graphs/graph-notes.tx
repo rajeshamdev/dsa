@@ -2,7 +2,7 @@
 2) Path leads from one node to another via edges.
 3) Length: The length of a path is number of edges in it.
 4) Cycle: A path is cycle if first and last node is same.
-5) Simple Path: A path is simple of each node appears at most onces in the path.
+5) Simple Path: A path is simple if each node appears at most onces in the path.
 6) Connectivity: A graph is connected if there is a path between any two nodes.
 7) Connectivity components: Connected parts of the graph are called "connected components".
 8) Tree: a tree is connected graph with N nodes and (N-1) edges. There is a unique path

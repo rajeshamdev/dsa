@@ -2,22 +2,20 @@ class Solution {
 public:
     vector<string> letterCombinations(string digits)
     {
-        auto len = digits.size();
-        if (0 == len) return {};
+        if (digits.empty()) return {};
         vector<string> keyMap = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
         vector<string> res = {""};
-        for (auto i = 0; i < len; i++) {
-            // if (!isdigit(digits[i])) return {};
-            int vecIndex = digits[i] - '0';
-            if (0 == vecIndex || 1 == vecIndex) continue;
-            string str = keyMap[vecIndex];
-            vector<string>tmp;
-            for (auto j = 0; j < str.size(); j++) {
-                for (auto k = 0; k < res.size(); k++) {
-                    tmp.push_back(res[k] + str[j]);
+        for (char &key : digits) {
+            if (!isdigit(key)) return {};
+            int index = key-'0';
+            if (0 == index || 1 == index) continue;
+            vector<string> tmp;
+            for (char &ch: keyMap[index]) {
+                for (string &str: res) {
+                    tmp.emplace_back(str + ch);
                 }
             }
-            res.swap(tmp);
+            res = tmp;
         }
         return res;
     }
