@@ -34,4 +34,26 @@ public:
         }
         return res;
     }
+
+    RandomListNode *copyRandomList(RandomListNode *head)
+    {
+        if (nullptr == head) return head;
+        unordered_map<RandomListNode*, RandomListNode*> nodeMap;
+        RandomListNode *pCur = head;
+        while (pCur) {
+            RandomListNode *nNode = new (nothrow) RandomListNode(pCur->label);
+            if (nullptr == nNode) return nullptr;
+            nodeMap.emplace(pCur, nNode);
+            pCur = pCur->next;
+        }
+        pCur = head;
+        RandomListNode *clone;
+        while (pCur) {
+            clone = nodeMap[pCur];
+            clone->next = nodeMap[pCur->next];
+            clone->random = nodeMap[pCur->random];
+            pCur = pCur->next;
+        }
+        return nodeMap[head];
+    }
 };

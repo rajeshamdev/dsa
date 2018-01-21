@@ -1,0 +1,28 @@
+A distributed system:
+ -> is a collection of entities;
+ -> each of these entities being autonomous,
+ -> programmable
+ -> asynchronous
+ -> failure-prone
+ -> entities communicate through an unreliable communication medium.
+
+The key goals of a distributed system include:
+ -> Transparency: Looks like a single single withour details of the location,
+    access, migration, concurrency, failure, relocation, persistence and
+    resources to the users.
+ -> Openness: Making the network easier to configure and modify.
+ -> Reliability: Compared to a single system, a distributed system should be
+    highly capable of being secure, consistent and have a high capability of
+    masking errors.
+ -> Performance: Compared to other models, distributed models are expected
+    to give a much-wanted boost to performance.
+ -> Scalability: Distributed systems should be scalable with respect to
+    geography, administration or size.
+
+Challenges for the distributed system include:
+ -> Security is a big challenge in a distributed environment, especially
+    when using public networks.
+ -> Fault tolerance could be tough when the distributed model is built
+    based on unreliable components.
+ -> Coordination and resource sharing can be difficult if proper protocols
+    or policies are not in place.

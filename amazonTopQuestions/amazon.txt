@@ -5,6 +5,14 @@
 
 Implement minstack so as push(), pop() and minstack() are O(1).
 
+1) Get top K most frequently used words in list of strings.
+2) From list of date and object. Given a date, get the object.
+   if the date is not in the list, get the immediate prior.
+3) Given start and end time, fork mimimum num of VMs.
+4) Design last 10 clicked items in a website.
+
+ 
+
 #include <bits/stdc++.h>
 
 class Stack {

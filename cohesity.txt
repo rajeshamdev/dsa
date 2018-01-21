@@ -1,3 +1,35 @@
+i
+
+array 1: 0, 1, 2
+array 2: 3, 4, 5
+array 3: 6, 7, 8
+  
+  0, 3, 6
+  
+  array 1 ... n
+  
+  vector<pair<string, string>> kv
+  sortNarrays(vector<vector<pair<string, string>>> &N)
+{
+    auto col = N.size();
+    auto row = N[0].size();
+    priority_queue<pair<string, string>, vector<pair<string, string>, greater<pair<string, string>> pq;
+    for (auto i = 0; i < row; i++) {
+        for (auto j = 0; j < col; j++) {
+            pq.emplace(N[j][i].first, N[j][i].second);
+        }
+        pair<string, string> temp = pq.front();
+        pq.pop();
+    }
+    
+}
+
+anirvan@cohesity.com
+
+
+
+
+
 ## How is fragmentation tackled in your Velocity?
 ## Periodic and background process, runs when the system is idle.
 ## Single node system

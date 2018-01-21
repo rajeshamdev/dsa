@@ -1,0 +1,11 @@
+
+1) Cache placement and cache eviction algorithms.
+2) How to cache if one specific member of struct is frequently accessed?
+3) What is Lock contension and how to avoid them?
+4) In a hypervisor, if few VMs are running slow, how do you debug them?
+5) How do you find the cpu/disk/mem utilization to begin with?
+6) Cache on coherent protocols on multiple nodes. MESI protocol.
+7) A server is serving the request at some speed. How do you know if pkts dropping?
+8) What is the necessary condition for deadlock and how to avoid deadlocks?
+9) Does increasing the CPU count on a system increase the throughput ?
+
