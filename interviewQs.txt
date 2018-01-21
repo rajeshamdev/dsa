@@ -1,0 +1,113 @@
+
+1) NVIDIA:
+----------
+1) A and B are huge matrices that cannot fit in memory and in local storage.
+   What is the fastest way to find (A+B)/2 * (Random Weight) for millions
+   of times. You need to store result also.
+   How would you do this such that computation to be fast?
+2) Find middle element of linked list.
+3) Find highest order bit in a number.
+4) Explain the workflow of fuse file system for open() system call.
+5) What are the other KV data bases similar to LMDB?
+
+2) Commvault:
+-------------
+1) What is the difference between mutex and semaphore?
+2) When do you use vector, list, set ?
+3) When do you use map and unordered_map ?
+4) How do you debug memory leaks on customer box?
+5) Explain why pthread_join() used?
+6) How do you pass variable number of args to thread func in pthread_create?
+7) what is std::move()?
+8) implement spinlock.
+9) implement c++ dynamic polymorphism.
+10) reverse a string?
+11) Design a persistent filesystem with read/write/modify. The filesystem is backed
+    on a file.
+
+
+3) Cohesity:
+------------
+1) A linked list is given such that each node contains an additional random pointer
+   which could point to any node in the list or null.  Return a deep copy of the list.
+2) Design algorithm to sort 1TB file on a machine with 1GB main memory.
+   The input file contains <Key Value> pairs, duplicates possible.
+   Additional info:
+    0. Sort by key.
+    1. Key/value are strings.
+    2. Disk space is sufficiently large (say 5TB).
+    3. Write the sorted data into another file.
+
+4) vmware:
+----------
+1) Given a list of iovec that has start/end offsets, sorted by start offset.
+   Write a function to coalese them.
+  struct iovec {
+    void *base;
+    size_t len;
+ }
+Input: 
+{ 0x1000, 0x200 }
+{ 0x1200, 0x100 }
+{ 0x1300, 0x100 }
+{ 0x1500, 0x200 }
+
+Output:
+{ 0x1000, 0x300 }
+{ 0x1500, 0x200 }
+{ }
+
+2) implement binary search.
+
+
+5) Microsoft:
+-------------
+1) Write a function that converts integer to "English words".
+   For instance: Given 1024, print "One thousand twenty four".
+
+6) Amazon:
+----------
+0) Implement minstack so as push(), pop() and minstack() are O(1).
+1) Get top K most frequently used words in list of strings.
+2) From list of date and object. Given a date, get the object.
+   if the date is not in the list, get the immediate prior.
+3) Given start and end time, fork mimimum num of VMs.
+4) Design last 10 clicked items in a website.
+5) Given a dictionary that contains mapping of employee and his manager
+   as a number of (employee, manager) pairs like below.
+{ "A", "C" },
+{ "B", "C" },
+{ "C", "F" },
+{ "D", "E" },
+{ "E", "F" },
+{ "F", "F" }
+
+In this example C is manager of A, C is also manager of B, F is manager
+of C and so on. Write a function to get names of all employees under each
+manager in the hierarchy not just their direct reports. It may be assumed
+that an employee directly reports to only one manager. In the above dictionary
+the root node/ceo is listed as reporting to himself.
+
+7) NetApp:
+----------
+1) Cache placement and cache eviction algorithms.
+2) How to cache if one specific member of struct is frequently accessed?
+3) What is Lock contension and how to avoid them?
+4) In a hypervisor, if few VMs are running slow, how do you debug them?
+5) How do you find the cpu/disk/mem utilization to begin with?
+6) Explain cache coherent protocols on multiple nodes. MESI protocol.
+7) A server is serving the request at some speed. How do you know if pkts dropping?
+8) What is the necessary condition for deadlock and how to avoid deadlocks?
+9) Does increasing the CPU count on a system increase the throughput ?
+
+
+8) Skytap:
+----------
+1) Write a function which takes array of integers as input and returns a
+   new array of only the odd numbers, where the order of the elements is
+   otherwise unchanged. For instance, `get_odd_numbers([1,2,3,4,5,6,7])` should return `[1,3,5,7]`.
+2) Count descendants of a node in binary tree.
+3) Implement a thread-safe Queue class with the methods put(x), get().
+   Make get() method block if there's nothing in the queue.
+
+
