@@ -26,7 +26,7 @@
 // 1) move fast pointer onto n+1 th node.
 // 2) move both pointers one step at a time till fast pointer reach NULL pointer.
 //    This keeps fast and slow pointers n nodes apart.
-// 3) delink slow next node.
+// 3) delink slow next (which is nth node).
 //
 class Solution {
 public:
