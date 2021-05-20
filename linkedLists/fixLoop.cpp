@@ -40,7 +40,7 @@ public:
         }
 
         // step-3: remove the loop.
-        while (slow->next != slow) {
+        while (slow->next != fast) {
             slow = slow->next;
         }
         slow->next = nullptr;
