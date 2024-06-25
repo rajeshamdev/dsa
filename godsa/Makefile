@@ -2,7 +2,7 @@ GO = go
 GOBUILD = $(GO) build -mod vendor
 GOTEST  = $(GO) test
 GOCLEAN = $(GO) clean
-APP = dsa
+APP = app
 
 DEBUGFLAGS = -race -gcflags="-m -l"
 DEBUGBUILD = $(GO) build -mod vendor $(DEBUGFLAGS)
