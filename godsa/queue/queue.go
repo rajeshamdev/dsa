@@ -28,10 +28,7 @@ func (q *Queue) Dequeue() (int, error) {
 }
 
 func (q *Queue) IsEmpty() bool {
-	if len(q.items) == 0 {
-		return true
-	}
-	return false
+	return len(q.items) == 0
 }
 
 func (q *Queue) Front() (int, error) {
@@ -41,5 +38,8 @@ func (q *Queue) Front() (int, error) {
 	}
 
 	return q.items[0], nil
+}
 
+func (q *Queue) Size() int {
+	return len(q.items)
 }
