@@ -41,3 +41,7 @@ func (s *Stack) Peek() (int, error) {
 
 	return s.items[len(s.items)-1], nil
 }
+
+func (s *Stack) Size() int {
+	return len(s.items)
+}
